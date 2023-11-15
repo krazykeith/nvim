@@ -14,6 +14,11 @@ return require('packer').startup(function(use)
         config = function()
             require('telescope').setup{
                 defaults = {
+                    file_ignore_patterns = {
+                        "node_modules",
+                        "static",
+                        "committed"
+                    },
                     ripgrep_arguments = {
                         'rg',
                         '--hidden',
