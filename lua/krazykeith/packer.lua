@@ -7,30 +7,11 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
+    use ('stevearc/vim-vscode-snippets')
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
         -- or                            , branch = '0.1.x',
         requires = { {'nvim-lua/plenary.nvim'}, {'BurntSushi/ripgrep'} },
-        config = function()
-            require('telescope').setup{
-                defaults = {
-                    file_ignore_patterns = {
-                        "node_modules",
-                        "static",
-                        "committed"
-                    },
-                    ripgrep_arguments = {
-                        'rg',
-                        '--hidden',
-                        '--no-heading',
-                        '--with-filename',
-                        '--line-number',
-                        '--column',
-                        '--smart-case'
-                    },
-                }
-            }
-        end
     }
 
     use({

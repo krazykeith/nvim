@@ -196,7 +196,6 @@ _G.packer_plugins = {
     url = "https://github.com/rose-pine/neovim"
   },
   ["telescope.nvim"] = {
-    config = { "\27LJ\2\n½\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\4\0005\4\3\0=\4\5\3=\3\a\2B\0\2\1K\0\1\0\rdefaults\1\0\0\22ripgrep_arguments\1\0\0\1\b\0\0\arg\r--hidden\17--no-heading\20--with-filename\18--line-number\r--column\17--smart-case\nsetup\14telescope\frequire\0" },
     loaded = true,
     path = "/Users/keithlassila/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
@@ -217,6 +216,11 @@ _G.packer_plugins = {
     path = "/Users/keithlassila/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
+  ["vim-vscode-snippets"] = {
+    loaded = true,
+    path = "/Users/keithlassila/.local/share/nvim/site/pack/packer/start/vim-vscode-snippets",
+    url = "https://github.com/stevearc/vim-vscode-snippets"
+  },
   ["zen-mode.nvim"] = {
     loaded = true,
     path = "/Users/keithlassila/.local/share/nvim/site/pack/packer/start/zen-mode.nvim",
@@ -233,10 +237,6 @@ time([[Config for rose-pine]], false)
 time([[Config for trouble.nvim]], true)
 try_loadstring("\27LJ\2\nC\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\nicons\1\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
 time([[Config for trouble.nvim]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-try_loadstring("\27LJ\2\n½\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\4\0005\4\3\0=\4\5\3=\3\a\2B\0\2\1K\0\1\0\rdefaults\1\0\0\22ripgrep_arguments\1\0\0\1\b\0\0\arg\r--hidden\17--no-heading\20--with-filename\18--line-number\r--column\17--smart-case\nsetup\14telescope\frequire\0", "config", "telescope.nvim")
-time([[Config for telescope.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
