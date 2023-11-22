@@ -6,7 +6,6 @@ vim.cmd.packadd('packer.nvim')
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
-
     use ('stevearc/vim-vscode-snippets')
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -34,7 +33,9 @@ return require('packer').startup(function(use)
         end
     })
 
-
+    use('neovim/nvim-lspconfig')
+    use('jose-elias-alvarez/null-ls.nvim')
+    use('MunifTanjim/prettier.nvim')
     use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
     use("nvim-treesitter/playground")
     use("theprimeagen/harpoon")
