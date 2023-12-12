@@ -15,6 +15,8 @@ return require('packer').startup(function(use)
     }
 
     use('f-person/git-blame.nvim')
+    use('FabijanZulj/blame.nvim')
+
     use({
         'rose-pine/neovim',
         as = 'rose-pine',
