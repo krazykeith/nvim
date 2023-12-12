@@ -14,6 +14,7 @@ return require('packer').startup(function(use)
         requires = { {'nvim-lua/plenary.nvim'}, {'BurntSushi/ripgrep'} },
     }
 
+    use('f-person/git-blame.nvim')
     use({
         'rose-pine/neovim',
         as = 'rose-pine',
