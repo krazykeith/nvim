@@ -17,6 +17,10 @@ autocmd("BufWinEnter", {
             vim.cmd.Git('push')
         end, opts)
 
+        vim.keymap.set("n", "<leader>f", function()
+            vim.cmd.Git('push -f')
+        end, opts)
+
         -- rebase always
         vim.keymap.set("n", "<leader>P", function()
             vim.cmd.Git({'pull',  '--rebase'})
