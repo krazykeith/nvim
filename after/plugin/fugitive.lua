@@ -18,7 +18,7 @@ autocmd("BufWinEnter", {
         end, opts)
 
         vim.keymap.set("n", "<leader>f", function()
-            vim.cmd.Git('push -f')
+            vim.cmd.Git('push --force-with-lease')
         end, opts)
 
         -- rebase always
