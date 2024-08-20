@@ -1,5 +1,6 @@
 require("krazykeith.set")
 require("krazykeith.remap")
+require("krazykeith.lazy_init")
 
 local augroup = vim.api.nvim_create_augroup
 local KrazyKeithGroup = augroup('KrazyKeith', {})
@@ -22,7 +23,7 @@ autocmd('TextYankPost', {
     end,
 })
 
-autocmd({"BufWritePre"}, {
+autocmd({ "BufWritePre" }, {
     group = KrazyKeithGroup,
     pattern = "*",
     command = [[%s/\s\+$//e]],
@@ -31,4 +32,4 @@ autocmd({"BufWritePre"}, {
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
-vim.keymap.set('v','<C-f>', "<ESC>:'<,'>! pg_format --spaces 2 --function-case 2 --wrap-after 2 --nogrouping <CR>")
+vim.keymap.set('v', '<C-f>', "<ESC>:'<,'>! pg_format --spaces 2 --function-case 2 --wrap-after 2 --nogrouping <CR>")

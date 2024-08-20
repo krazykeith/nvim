@@ -1,10 +1,1 @@
-# NVIM Config
-
-`:PackerSync`
-`:Copilot setup`
-
-## Brew install
-
-```shell
-brew install prettier
-```
+Prerequisite: install [ripgrep](https://github.com/BurntSushi/ripgrep).
