@@ -112,3 +112,37 @@ vim.keymap.set("n", "K", function()
         vim.cmd("help " .. vim.fn.expand("<cword>"))
     end
 end, { desc = "LSP hover or help" })
+
+-- Format keybinding - uses conform.nvim for Terraform, LSP for others
+vim.keymap.set("n", "<leader>f", function()
+    local filetype = vim.bo.filetype
+    if filetype == "terraform" or filetype == "hcl" or filetype == "tf" or filetype == "tfvars" then
+        require("conform").format({ async = false })
+    else
+        vim.lsp.buf.format({ async = false })
+    end
+end, { desc = "Format code" })
+
+
+-- Ensure OpenTofu files are recognized as Terraform files and auto-format on save
+vim.api.nvim_create_autocmd("BufRead", {
+    pattern = "*.tf",
+    callback = function()
+        vim.bo.filetype = "terraform"
+    end,
+})
+
+vim.api.nvim_create_autocmd("BufRead", {
+    pattern = "*.tfvars",
+    callback = function()
+        vim.bo.filetype = "terraform"
+    end,
+})
+
+-- Auto-format Terraform/OpenTofu files on save using conform.nvim
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*.tf",
+    callback = function()
+        require("conform").format({ async = false })
+    end,
+})
