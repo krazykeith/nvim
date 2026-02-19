@@ -30,7 +30,7 @@ return {
     -- Mason setup for LSP server management
     require("mason").setup({
       ensure_installed = {
-        "prettier",
+        "biome",
         "tflint",
         "terraform-ls"
       },

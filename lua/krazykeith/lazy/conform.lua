@@ -6,27 +6,47 @@ return {
       hcl = { "terraform_fmt" },
       tf = { "terraform_fmt" },
       tfvars = { "terraform_fmt" },
-      -- Let TypeScript files use LSP formatting instead of conform
-      -- typescript = { "prettier" },
-      -- javascript = { "prettier" },
-      -- typescriptreact = { "prettier" },
-      -- javascriptreact = { "prettier" },
-      json = { "prettier" },
-      css = { "prettier" },
-      scss = { "prettier" },
-      html = { "prettier" },
-      markdown = { "prettier" },
+      -- TypeScript and JavaScript files now use Biome
+      typescript = { "biome" },
+      javascript = { "biome" },
+      typescriptreact = { "biome" },
+      javascriptreact = { "biome" },
+      json = { "biome" },
+      css = { "biome" },
+      scss = { "biome" },
+      html = { "biome" },
+      markdown = { "biome" },
     },
+    -- Respect project-local formatter settings
+    format_on_save = function(bufnr)
+      -- Disable with a global or buffer-local variable
+      if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+        return
+      end
+      return { timeout_ms = 500, lsp_fallback = true }
+    end,
     formatters = {
       terraform_fmt = {
         command = vim.fn.expand("~/.local/share/nvim/mason/bin/terraform"),
         args = { "fmt", "-" },
         stdin = true,
       },
-      prettier = {
-        command = vim.fn.expand("~/.local/share/nvim/mason/bin/prettier"),
-        args = { "--stdin-filepath", vim.fn.expand("%") },
+      biome = {
+        command = vim.fn.expand("~/.local/share/nvim/mason/bin/biome"),
+        args = function()
+          -- Use the actual file path to ensure biome finds project config
+          local file_path = vim.api.nvim_buf_get_name(0)
+          return { "format", "--stdin-file-path", file_path }
+        end,
         stdin = true,
+        cwd = function()
+          -- Ensure biome runs from the project root to find config files
+          return vim.fn.fnamemodify(vim.fn.findfile("biome.json", ".;"), ":h")
+            or vim.fn.fnamemodify(vim.fn.findfile("biome.jsonc", ".;"), ":h")
+            or vim.fn.fnamemodify(vim.fn.findfile(".biome.json", ".;"), ":h")
+            or vim.fn.fnamemodify(vim.fn.findfile("package.json", ".;"), ":h")
+            or vim.fn.getcwd()
+        end,
       },
     },
   },
