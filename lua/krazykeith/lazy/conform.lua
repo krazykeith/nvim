@@ -41,11 +41,14 @@ return {
         stdin = true,
         cwd = function()
           -- Ensure biome runs from the project root to find config files
-          return vim.fn.fnamemodify(vim.fn.findfile("biome.json", ".;"), ":h")
-            or vim.fn.fnamemodify(vim.fn.findfile("biome.jsonc", ".;"), ":h")
-            or vim.fn.fnamemodify(vim.fn.findfile(".biome.json", ".;"), ":h")
-            or vim.fn.fnamemodify(vim.fn.findfile("package.json", ".;"), ":h")
-            or vim.fn.getcwd()
+          local config_files = { "biome.json", "biome.jsonc", ".biome.json", "package.json" }
+          for _, name in ipairs(config_files) do
+            local found = vim.fn.findfile(name, ".;")
+            if found ~= "" then
+              return vim.fn.fnamemodify(found, ":h")
+            end
+          end
+          return vim.fn.getcwd()
         end,
       },
     },
