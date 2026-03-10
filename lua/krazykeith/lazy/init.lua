@@ -7,6 +7,8 @@ return {
 
     "eandrju/cellular-automaton.nvim",
 
+    "nvim-tree/nvim-web-devicons",
+
     {
         "lewis6991/gitsigns.nvim",
         config = function()
