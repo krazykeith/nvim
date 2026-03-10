@@ -29,6 +29,3 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
-
--- Add system vim runtime path to fix fugitive syntax issues
-vim.opt.runtimepath:append("/usr/share/vim/vim91")

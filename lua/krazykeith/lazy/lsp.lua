@@ -5,8 +5,6 @@ return {
     "williamboman/mason-lspconfig.nvim",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
     "hrsh7th/nvim-cmp",
     "L3MON4D3/LuaSnip",
     "saadparwaiz1/cmp_luasnip",
@@ -157,8 +155,6 @@ return {
       end,
     })
 
-    local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
     cmp.setup({
       snippet = {
         expand = function(args)
@@ -166,8 +162,8 @@ return {
         end,
       },
       mapping = cmp.mapping.preset.insert({
-        ['<Tab>'] = cmp.mapping.select_prev_item(cmp_select),
-        ['<S-Tab>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+        ['<S-Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
         ["<C-Space>"] = cmp.mapping.complete(),
       }),
